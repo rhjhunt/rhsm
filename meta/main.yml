@@ -15,10 +15,10 @@ galaxy_info:
         - 8
 
   galaxy_tags:
-    - RHEL
-    - RedHatEnterpriseLinux
-    - RedHat
-    - subscription-manager
+    - rhel
+    - redhatenterpriselinux
+    - redhat
+    - subscriptionmanager
     - rhsm
 
 dependencies: []
