@@ -22,11 +22,17 @@ A list of other roles hosted on Galaxy should go here, plus any details in regar
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+Example playbook using Organization ID and Activation key.
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yml
+---
+- hosts: all
+  vars:
+    rhsm_org_id: '0000000'
+    rhsm_activationkey: activation-key
+  roles:
+    - role: rhsm
+```
 
 License
 -------

@@ -1,0 +1,23 @@
+language: python
+versions:
+  - "2.7"
+  - "3.7"
+cache: pip
+
+branches:
+  except:
+    - master
+
+install:
+  - pip install -U pip
+  - pip --version
+  - pip install -r requirements.txt
+  - ansible --version
+  - ansible-lint --version
+  - yamllint --version
+  - flake8 --version
+  - molecule --version
+
+script:
+  - molecule lint
+  - flake8 .
