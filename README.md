@@ -1,4 +1,4 @@
-[![Build Status](https://api.travis-ci.com/rhjhunt/rhsm.svg?branch=master)](https://api.travis-ci.com/rhjhunt/rhsm)
+[![Build Status](https://travis-ci.com/rhjhunt/rhsm.svg?branch=master)](https://travis-ci.com/rhjhunt/rhsm)
 
 RHSM
 =========
