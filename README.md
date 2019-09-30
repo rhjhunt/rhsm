@@ -1,7 +1,8 @@
 RHSM
 =========
 
-A brief description of the role goes here.
+Ansible role to use *redhat_subscription* to register a Red Hat Enterprise Linux
+(RHEL) system with `subscription-manager`.
 
 Requirements
 ------------
