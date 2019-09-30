@@ -1,17 +1,18 @@
 language: python
-versions:
-  - "2.7"
-  - "3.7"
+python:
+  - '2.7'
+  - '3.7'
 cache: pip
 
 branches:
-  except:
-    - master
+  only:
+    - /.*/
 
 install:
   - pip install -U pip
   - pip --version
   - pip install -r requirements.txt
+  - npm install -g markdownlint-cli
   - ansible --version
   - ansible-lint --version
   - yamllint --version
@@ -19,5 +20,6 @@ install:
   - molecule --version
 
 script:
+  - markdownlint .
   - molecule lint
   - flake8 .
