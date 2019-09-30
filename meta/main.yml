@@ -1,0 +1,24 @@
+galaxy_info:
+  author: Jacob Hunt
+  description: Role using subscription-manager to register RHEL systems.
+  company: Red Hat
+
+  license: license (GPL-3.0)
+
+  min_ansible_version: 2.8
+
+  platforms:
+    - name: EL
+      versions:
+        - 6
+        - 7
+        - 8
+
+  galaxy_tags:
+    - rhel
+    - redhatenterpriselinux
+    - redhat
+    - subscriptionmanager
+    - rhsm
+
+dependencies: []
