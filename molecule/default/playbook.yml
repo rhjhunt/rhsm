@@ -1,5 +1,13 @@
 ---
 - name: Converge
   hosts: all
+  become: true
+  pre_tasks:
+    - name: Install libselinux-python for RHEL 6
+      yum:
+        name: /tmp/libselinux-python-2.0.94-7.el6.x86_64.rpm
+        state: present
+      when: ansible_distribution_major_version == "6"
+
   roles:
     - role: rhsm
