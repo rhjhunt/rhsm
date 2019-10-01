@@ -1,0 +1,4 @@
+ansible_user: vagrant
+ansible_password: vagrant
+rhsm_org_id: "{{ lookup('env', 'RHSM_ORG_ID') }}"
+rhsm_activationkey: "{{ lookup('env', 'RHSM_ACTIVATIONKEY') }}"

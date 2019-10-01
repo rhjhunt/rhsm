@@ -2,17 +2,35 @@
 dependency:
   name: galaxy
 driver:
-  name: docker
+  name: vagrant
+  provider:
+    name: libvirt
 lint:
   name: yamllint
 platforms:
-  - name: instance
-    image: centos:7
+  - name: instance1
+    box: generic/rhel8
+    memory: 1024
+    cpus: 1
+    groups:
+      - rhel
+    config_options:
+      synced_folder: false
+    provision: true
 provisioner:
   name: ansible
+  log: true
+  sudo: true
+  inventory:
+    links:
+      group_vars: group_vars
   lint:
     name: ansible-lint
+  playbooks:
+    converge: playbook.yml
 verifier:
   name: testinfra
+  options:
+    v: true
   lint:
     name: flake8

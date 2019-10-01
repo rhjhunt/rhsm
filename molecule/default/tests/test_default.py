@@ -1,5 +1,6 @@
-import os
+"""Test suite to verify that a system is properly subscribed."""
 
+import os
 import testinfra.utils.ansible_runner
 
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
@@ -7,9 +8,19 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 ).get_hosts('all')
 
 
-def test_hosts_file(host):
-    f = host.file('/etc/hosts')
+def test_rhsm_package(host):
+    """Verify subscription-manager is installed."""
+    assert host.package("subscription-manager").is_installed
 
-    assert f.exists
-    assert f.user == 'root'
-    assert f.group == 'root'
+
+def test_pool_id(host):
+    """Verify that a pool id is attached to the host."""
+    with host.sudo():
+        assert host.check_output(
+            'subscription-manager list --consumed --pool-only')
+
+
+def test_status(host):
+    """Verify the system is registered."""
+    with host.sudo():
+        assert host.check_output('subscription-manager status')
