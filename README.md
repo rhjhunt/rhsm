@@ -3,8 +3,8 @@
 RHSM
 =========
 
-Ansible role to use *redhat_subscription* to register a Red Hat Enterprise Linux
-(RHEL) system with `subscription-manager`.
+Ansible role to use the *redhat_subscription* module to register a
+Red Hat Enterprise Linux (RHEL) system with `subscription-manager`.
 
 Requirements
 ------------
@@ -67,8 +67,8 @@ Example playbook using Organization ID and Activation key.
     - role: rhsm
 ```
 
-Example playbook with username, password and pool ID. In order to protect your
-password and pool ID it's recommend to put the information in a vault.
+Example playbook with username, password and pool ID. To protect your password
+and pool ID it's recommend to put the information in a vault.
 
 ```yml
 ---
