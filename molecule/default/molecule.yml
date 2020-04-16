@@ -5,32 +5,19 @@ driver:
   name: vagrant
   provider:
     name: libvirt
-lint:
-  name: yamllint
+lint: |
+  yamllint .
+  ansible-lint .
 platforms:
-  - name: instance1
+  - name: instance
     box: generic/rhel8
     memory: 1024
     cpus: 1
     groups:
       - rhel
-    config_options:
-      synced_folder: false
-    provision: true
 provisioner:
   name: ansible
-  log: true
-  sudo: true
-  inventory:
-    links:
-      group_vars: group_vars
-  lint:
-    name: ansible-lint
   playbooks:
-    converge: playbook.yml
+    converge: converge.yml
 verifier:
-  name: testinfra
-  options:
-    v: true
-  lint:
-    name: flake8
+  name: ansible

@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  become_method: sudo
+
+  tasks:
+    - name: "Include rhsm"
+      include_role:
+        name: "rhsm"

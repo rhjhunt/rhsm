@@ -1,0 +1,16 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+  become_method: sudo
+  tasks:
+
+  - name: Verify system is running RHEL
+    assert:
+      that: ansible_os_family == 'RedHat'
+
+  - name: Verify system is registered
+    command: 'subscription-manager identity'
+    register: rhsm_identity_status
+    failed_when: rhsm_identity_status.rc != 0
+    changed_when: rhsm_identity_status.rc != 0

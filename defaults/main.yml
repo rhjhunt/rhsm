@@ -1,4 +1,10 @@
 ---
+# Get VARIANT_ID from /etc/os-release
+rhsm_variant_id: "{{ lookup('file', '/etc/os-release') | regex_search('(?<=VARIANT_ID=).*') }}"
+
+# Get ID from /etc/os-release
+rhsm_id: "{{ lookup('file', '/etc/os-release') | regex_search('(?<=ID=).*') }}"
+
 # Activation key to use for registration
 rhsm_activationkey: "{{ omit }}"
 
@@ -77,3 +83,25 @@ rhsm_state: "{{ omit }}"
 
 # access.redhat.com or Red Hat Satellite 6 username
 rhsm_username: "{{ omit }}"
+
+_repos:
+  # RHEL 6
+  Santiago:
+    - "{{ rhsm_id }}-{{ ansible_distribution_major_version }}-{{ rhsm_variant_id }}-rpms"
+    - "{{ rhsm_id }}-{{ ansible_distribution_major_version }}-{{ rhsm_variant_id }}-optional-rpms"
+  # RHEL 7
+  Maipo:
+    - "{{ rhsm_id }}-{{ ansible_distribution_major_version }}-{{ rhsm_variant_id }}-rpms"
+    - "{{ rhsm_id }}-{{ ansible_distribution_major_version }}-{{ rhsm_variant_id }}-optional-rpms"
+  # RHEL 8
+  Ootpa:
+    - "{{ rhsm_id }}-{{ ansible_distribution_major_version }}-for-{{ ansible_architecture }}-appstream-rpms"
+    - "{{ rhsm_id }}-{{ ansible_distribution_major_version }}-for-{{ ansible_architecture }}-baseos-rpms"
+
+rhsm_repos: "{{ _repos[ansible_distribution_release] }}"
+
+# Disable all currently enabled repositories that are not specified
+rhsm_purge: "{{ omit }}"
+
+# Enable or disable the repositories
+rhsm_repo_state: "{{ omit }}"

@@ -23,3 +23,9 @@
     server_proxy_user: "{{ rhsm_server_proxy_user }}"
     state: "{{ rhsm_state }}"
     username: "{{ rhsm_username }}"
+
+    #- name: Enable RHSM repositories
+    # rhsm_repository:
+    # name: "{{ rhsm_repos }}"
+    # purge: "{{ rhsm_purge }}"
+    # state: "{{ rhsm_repo_state }}"
